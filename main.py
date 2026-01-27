@@ -11,7 +11,7 @@ if name:
     import plotly.express as px
     import pandas as pd
 
-    API_KEY = "PUT_YOUR_API_KEY_HERE"
+    API_KEY = st.secrets["api_key"]
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
     st.title("🌦️ Weather Checker App")
