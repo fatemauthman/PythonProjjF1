@@ -48,3 +48,31 @@ if name:
             st.plotly_chart(fig)
         else:
             st.error("City not found or API error")
+
+            import streamlit as st
+
+            # ---------- Title ----------
+            st.title("🌦️ Weather App – Local Demo")
+
+            # ---------- User Input ----------
+            st.header("User Input")
+            city = st.text_input("Enter a city name")
+
+            temperature = st.slider(
+                "Select a sample temperature (°C)",
+                min_value=-10,
+                max_value=40,
+                value=20
+            )
+
+            # ---------- Processing ----------
+            st.header("Processing")
+            if city:
+                message = f"The selected city is {city}."
+            else:
+                message = "No city entered yet."
+
+            # ---------- Output ----------
+            st.header("Output")
+            st.write(message)
+            st.write(f"Sample temperature: {temperature} °C")
