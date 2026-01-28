@@ -8,7 +8,7 @@ if name:
     st.write(f'Hello {name}, welcome to the weather app!')
 
     from datetime import datetime
-    from weather_service import get_weather, get_location_time
+    from weather_api import get_weather, get_location_time
 
     import streamlit as st
     import requests
