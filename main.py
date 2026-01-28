@@ -1,6 +1,6 @@
 
 import streamlit as st
-import weather
+from weather_service import get_weather, get_location_time
 
 st.title('Weather App')
 
