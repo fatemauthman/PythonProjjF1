@@ -7,6 +7,9 @@ name = st.text_input('Enter your name', '')
 if name:
     st.write(f'Hello {name}, welcome to the weather app!')
 
+    from datetime import datetime
+    from weather_service import get_weather, get_location_time
+
     import streamlit as st
     import requests
     import plotly.express as px
@@ -87,4 +90,3 @@ if name:
                 utc_time = datetime.now(timezone.utc)
                 location_time = utc_time + timedelta(seconds=timezone_offset)
                 return location_time.strftime("%A, %d %B %Y, %H:%M")
-            
