@@ -25,3 +25,20 @@ def get_location_time(timezone_offset):
     utc_time = datetime.now(timezone.utc)
     location_time = utc_time + timedelta(seconds=timezone_offset)
     return location_time.strftime("%A, %d %B %Y, %H:%M")
+
+from datetime import datetime, timezone, timedelta
+
+def get_location_time(timezone_offset):
+    """
+    timezone_offset: offset in seconds from UTC (OpenWeatherMap)
+    """
+    utc_now = datetime.now(timezone.utc)
+    location_time = utc_now + timedelta(seconds=timezone_offset)
+    return location_time.strftime("%A, %d %B %Y, %H:%M")
+return {
+    "city": data["name"],
+    "temperature": data["main"]["temp"],
+    "humidity": data["main"]["humidity"],
+    "condition": data["weather"][0]["description"],
+    "timezone": data["timezone"]
+}

@@ -7,8 +7,6 @@ name = st.text_input('Enter your name', '')
 if name:
     st.write(f'Hello {name}, welcome to the weather app!')
 
-    from datetime import datetime
-    from weather_api import get_weather, get_location_time
 
     import streamlit as st
     import requests
@@ -91,3 +89,16 @@ if name:
                 location_time = utc_time + timedelta(seconds=timezone_offset)
                 return location_time.strftime("%A, %d %B %Y, %H:%M")
 
+from datetime import datetime
+
+local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
+
+from weather_api import get_weather, get_location_time
+
+st.subheader("🕒 Date & Time")
+
+st.write(f"**Your local time:** {local_time}")
+st.write(
+    f"**Local time in {weather['city']}:** "
+    f"{get_location_time(weather['timezone'])}"
+)
