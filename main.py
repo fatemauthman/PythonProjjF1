@@ -1,5 +1,6 @@
 
 import streamlit as st
+import weather
 
 st.title('Weather App')
 
@@ -90,3 +91,13 @@ if name:
                 utc_time = datetime.now(timezone.utc)
                 location_time = utc_time + timedelta(seconds=timezone_offset)
                 return location_time.strftime("%A, %d %B %Y, %H:%M")
+
+# Local user time
+local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
+
+# Location time
+location_time = get_location_time(weather["timezone"])
+
+st.subheader("🕒 Date & Time")
+st.write(f"**Your local time:** {local_time}")
+st.write(f"**Local time in {weather['city']}:** {location_time}")
