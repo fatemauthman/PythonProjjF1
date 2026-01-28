@@ -76,3 +76,15 @@ if name:
             st.header("Output")
             st.write(message)
             st.write(f"Sample temperature: {temperature} °C")
+
+            from datetime import datetime, timezone, timedelta
+
+
+            def get_location_time(timezone_offset):
+                """
+                timezone_offset: offset in seconds from UTC (from OpenWeatherMap)
+                """
+                utc_time = datetime.now(timezone.utc)
+                location_time = utc_time + timedelta(seconds=timezone_offset)
+                return location_time.strftime("%A, %d %B %Y, %H:%M")
+            
