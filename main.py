@@ -88,6 +88,14 @@ local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
 st.subheader("Date & Time")
 
-st.write(
-    f"**Local time in {city}:** "
-    f"{get_location_time(weather_data['timezone'])}")
+city = st.text_input("Enter city name")
+
+if st.button("Get Weather") and city:
+    weather_data = get_weather(city, API_KEY)
+    location_time = get_location_time(weather_data["timezone"])
+
+    st.subheader("Date & Time")
+    st.write(
+        f"**Local time in {weather_data['city']}:** "
+        f"{location_time}"
+    )
