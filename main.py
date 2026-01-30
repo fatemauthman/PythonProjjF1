@@ -16,7 +16,7 @@ if name:
     API_KEY = "631e6df9a39414ae72d5ad878b96c13e"
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-    st.title("🌦️ Weather Checker App")
+    st.title(" Weather Checker App")
 
     city = st.text_input("Enter city name")
 
@@ -36,9 +36,9 @@ if name:
             humidity = data["main"]["humidity"]
             condition = data["weather"][0]["description"]
 
-            st.write(f"🌡️ Temperature: {temp} °C")
-            st.write(f"💧 Humidity: {humidity}%")
-            st.write(f"☁️ Condition: {condition}")
+            st.write(f" Temperature: {temp} °C")
+            st.write(f" Humidity: {humidity}%")
+            st.write(f" Condition: {condition}")
 
             df = pd.DataFrame({
                 "Metric": ["Temperature", "Humidity"],
@@ -53,7 +53,7 @@ if name:
             import streamlit as st
 
             # ---------- Title ----------
-            st.title("🌦️ Weather App – Local Demo")
+            st.title(" Weather App – Local Demo")
 
             # ---------- User Input ----------
             st.header("User Input")
@@ -93,9 +93,9 @@ from datetime import datetime
 
 local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
-from weather_logic import get_weather, get_location_time
+from weather_api.py import Get_Weather, get_location_time
 
-st.subheader("🕒 Date & Time")
+st.subheader("Date & Time")
 
 st.write(f"**Your local time:** {local_time}")
 st.write(
