@@ -88,6 +88,6 @@ local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
 st.subheader("Date & Time")
 
-st.write(f"**Your local time:** {local_time}")
-    f"{get_location_time(weather['timezone'])}"
-)
+st.write(
+    f"**Local time in {city}:** "
+    f"{get_location_time(weather_data['timezone'])}")
