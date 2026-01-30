@@ -1,4 +1,3 @@
-
 import streamlit as st
 from datetime import datetime
 from weather_logic import get_weather, get_location_time
