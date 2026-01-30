@@ -16,11 +16,6 @@ name = st.text_input("Enter your name", key="name_input")
 if name:
     st.success(f"Hello {name}! 😊 Welcome to the Weather App")
 
-st.divider()   # קו מפריד יפה
-
-# --- Weather section ---
-city = st.text_input("Enter city name", key="city_input")
-
 API_KEY = st.secrets["api_key"]
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
