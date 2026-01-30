@@ -1,8 +1,8 @@
 
 import streamlit as st
 from datetime import datetime
-
 from weather_logic import get_weather, get_location_time
+
 
 st.title('Weather App')
 
@@ -82,8 +82,6 @@ if name:
             st.write(f"Sample temperature: {temperature} °C")
 
 
-                utc_time = datetime.now(timezone.utc)
-                location_time = utc_time + timedelta(seconds=timezone_offset)
                 return location_time.strftime("%A, %d %B %Y, %H:%M")
 
 from datetime import datetime

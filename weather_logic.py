@@ -12,9 +12,9 @@ def get_location_time(timezone_offset):
     return location_time.strftime("%A, %d %B %Y, %H:%M")
 
 from datetime import datetime, timezone, timedelta
+import requests
 
-
-            def get_location_time(timezone_offset):
-                """
-                timezone_offset: offset in seconds from UTC (from OpenWeatherMap)
-                """
+def get_location_time(timezone_offset):
+    utc_time = datetime.now(timezone.utc)
+    location_time = utc_time + timedelta(seconds=timezone_offset)
+    return location_time.strftime("%A, %d %B %Y, %H:%M")
