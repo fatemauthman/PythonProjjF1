@@ -1,6 +1,5 @@
 import streamlit as st
 from datetime import datetime
-from weather_logic import get_weather, get_location_time
 
 st.title('Weather App')
 
@@ -16,96 +15,31 @@ if name:
 
     API_KEY = "631e6df9a39414ae72d5ad878b96c13e"
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
+import requests
+from datetime import datetime, timezone, timedelta
 
-    st.title(" Weather Checker App")
+BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
-    city = st.text_input("Enter city name")
+def get_weather(city, api_key, units="metric"):
+    params = {
+        "q": city,
+        "appid": api_key,
+        "units": units
+    }
+    response = requests.get(BASE_URL, params=params)
+    response.raise_for_status()
+    data = response.json()
 
-    if st.button("Get Weather"):
-        params = {
-            "q": city,
-            "appid": API_KEY,
-            "units": "metric"
-        }
+    return {
+        "city": data["name"],
+        "temperature": data["main"]["temp"],
+        "humidity": data["main"]["humidity"],
+        "condition": data["weather"][0]["description"],
+        "timezone": data["timezone"]
+    }
 
-        response = requests.get(BASE_URL, params=params)
+def get_location_time(timezone_offset):
+    utc_time = datetime.now(timezone.utc)
+    location_time = utc_time + timedelta(seconds=timezone_offset)
+    return location_time.strftime("%A, %d %B %Y, %H:%M")
 
-        if response.status_code == 200:
-            data = response.json()
-
-            temp = data["main"]["temp"]
-            humidity = data["main"]["humidity"]
-            condition = data["weather"][0]["description"]
-
-            st.write(f" Temperature: {temp} °C")
-            st.write(f" Humidity: {humidity}%")
-            st.write(f" Condition: {condition}")
-
-            df = pd.DataFrame({
-                "Metric": ["Temperature", "Humidity"],
-                "Value": [temp, humidity]
-            })
-
-            fig = px.bar(df, x="Metric", y="Value", title=f"Weather in {city}")
-            st.plotly_chart(fig)
-        else:
-            st.error("City not found or API error")
-
-            import streamlit as st
-
-            # ---------- Title ----------
-            st.title(" Weather App – Local Demo")
-
-            # ---------- User Input ----------
-            st.header("User Input")
-            city = st.text_input("Enter city name", key="city_input")
-
-
-            temperature = st.slider(
-                "Select a sample temperature (°C)",
-                min_value=-10,
-                max_value=40,
-                value=20
-            )
-
-            # ---------- Processing ----------
-            st.header("Processing")
-            if city:
-                message = f"The selected city is {city}."
-            else:
-                message = "No city entered yet."
-
-            # ---------- Output ----------
-            st.header("Output")
-            st.write(message)
-            st.write(f"Sample temperature: {temperature} °C")
-
-
-from datetime import datetime
-
-local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
-
-st.subheader("Date & Time")
-
-city2 = st.text_input("Enter city name", key="city_input_2")
-
-
-if st.button("Get Weather", key="get_weather_btn") and city:
-    weather_data = get_weather(city, API_KEY)
-
-    if "timezone" in weather_data:
-        location_time = get_location_time(weather_data["timezone"])
-
-        st.subheader("Date & Time")
-        st.write(
-            f"**Local time in {weather_data['city']}:** {location_time}"
-        )
-
-else:
-    st.warning("Timezone data is not available for this location.")
-
-    st.subheader("Date & Time")
-    st.write(
-        f"**Local time in {weather_data['city']}:** "
-        f"{location_time}"
-    )
