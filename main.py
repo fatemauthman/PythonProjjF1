@@ -86,13 +86,12 @@ from datetime import datetime
 
 local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
-
 st.subheader("Date & Time")
 
 city2 = st.text_input("Enter city name", key="city_input_2")
 
 
-if st.button("Get Weather") and city:
+if st.button("Get Weather", key="get_weather_btn") and city:
     weather_data = get_weather(city, API_KEY)
     location_time = get_location_time(weather_data["timezone"])
 
