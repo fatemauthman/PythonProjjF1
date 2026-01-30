@@ -14,7 +14,9 @@ def get_location_time(timezone_offset):
 from datetime import datetime, timezone, timedelta
 import requests
 
-def get_location_time(timezone_offset):
-    utc_time = datetime.now(timezone.utc)
-    location_time = utc_time + timedelta(seconds=timezone_offset)
-    return location_time.strftime("%A, %d %B %Y, %H:%M")
+return {
+    "city": data["name"],
+    "temperature": data["main"]["temp"],
+    "humidity": data["main"]["humidity"],
+    "condition": data["weather"][0]["description"],
+    "timezone": data["timezone"] }
