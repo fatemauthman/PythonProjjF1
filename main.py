@@ -86,12 +86,8 @@ from datetime import datetime
 local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
 
-
-
 st.subheader("Date & Time")
 
 st.write(f"**Your local time:** {local_time}")
-st.write(
-    f"**Local time in {weather['city']}:** "
     f"{get_location_time(weather['timezone'])}"
 )
