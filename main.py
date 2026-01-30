@@ -59,7 +59,8 @@ if name:
 
             # ---------- User Input ----------
             st.header("User Input")
-            city = st.text_input("Enter a city name")
+            city = st.text_input("Enter city name", key="city_input")
+
 
             temperature = st.slider(
                 "Select a sample temperature (°C)",
@@ -88,7 +89,8 @@ local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
 st.subheader("Date & Time")
 
-city = st.text_input("Enter city name")
+city2 = st.text_input("Enter city name", key="city_input_2")
+
 
 if st.button("Get Weather") and city:
     weather_data = get_weather(city, API_KEY)
