@@ -93,7 +93,7 @@ from datetime import datetime
 
 local_time = datetime.now().strftime("%A, %d %B %Y, %H:%M")
 
-from weather_api import Get_Weather, get_location_time
+from weather_logic import get weather, get_location_time
 
 st.subheader("Date & Time")
 
