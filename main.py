@@ -82,6 +82,7 @@ if name:
             st.write(f"Sample temperature: {temperature} °C")
 
 
+                location_time = utc_time + timedelta(seconds=timezone_offset)
                 return location_time.strftime("%A, %d %B %Y, %H:%M")
 
 from datetime import datetime
