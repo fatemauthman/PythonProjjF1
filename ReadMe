@@ -1,0 +1,45 @@
+# Weather Checker App – Streamlit
+
+## About the App
+This project is a Python-based weather application developed using *Streamlit*.
+The app allows users to enter a city name and retrieve **real-time weather information** using a REST API.
+
+The project demonstrates the full development flow:
+- Data retrieval via REST API
+- Python logic separation
+- Interactive web UI
+- Version control with GitHub
+- Deployment to Streamlit Cloud
+
+---
+
+## Live Application
+The application is publicly deployed and accessible here:
+https://pythonprojjf1-emodgcuywapkpwsyrj6nfu.streamlit.app/
+
+---
+
+## Features
+- City-based weather search
+- Displays:
+  - Temperature
+  - Humidity
+  - Weather condition description
+- Displays **current local date and time**:
+  - User’s local time
+  - Local time of the selected city (timezone-based)
+- REST API integration (OpenWeatherMap)
+- User-friendly and interactive UI built with Streamlit
+
+---
+
+## Technologies Used
+- **Python**
+- **Streamlit**
+- **Requests** – REST API calls
+- **Pandas** – data organization
+- **OpenWeatherMap API**
+
+---
+
+## Project Structure
