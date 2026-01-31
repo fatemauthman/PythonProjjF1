@@ -44,10 +44,6 @@ def get_weather(city, api_key, units="metric"):
         "lon": data["coord"]["lon"]
     }
 
-# ---
-if st.button("Get Weather") and city:
-    weather_data = get_weather(city, API_KEY)
-
 
 
 def get_location_time(timezone_offset):
