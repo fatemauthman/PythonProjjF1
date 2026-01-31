@@ -45,7 +45,7 @@ def get_weather(city, api_key, units="metric"):
     }
 
 # ---
-weather_data = get_weather(city, API_KEY)
+weather_data = get_weather(city, api_key)
 
 
 def get_location_time(timezone_offset):
