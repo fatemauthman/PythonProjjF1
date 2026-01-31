@@ -15,8 +15,7 @@ name = st.text_input("Enter your name", key="name_input")
 
 if name:
     st.success(f"Hello {name}! 😊 Welcome to the Weather App")
-
-API_KEY = st.secrets["api_key"]
+api_key = "631e6df9a39414ae72d5ad878b96c13e"
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
 
