@@ -25,7 +25,7 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 def get_weather(city, api_key, units="metric"):
     params = {
         "q": city,
-        "appid": API_KEY,
+        "appid": api_key,
         "units": units
     }
     response = requests.get(BASE_URL, params=params)
