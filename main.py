@@ -22,7 +22,7 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 # =========================
 # Functions
 # =========================
-def get_weather(city, units="metric"):
+def get_weather(city, api_key, units="metric"):
     params = {
         "q": city,
         "appid": API_KEY,
@@ -76,15 +76,8 @@ if st.button("Get Weather", key="get_weather_btn") and city:
         })
         st.map(map_df)
 
-
-    except requests.exceptions.HTTPError as e:
-
-        st.error(" City not found or API error.")
-
-        st.write(e)
+    except requests.exceptions.HTTPError:
+        st.error(" City not found. Please try again.")
 
     except Exception as e:
-
-        st.error(" Unexpected error:")
-
-        st.write(e)
+        st.error(" Something went wrong.")
