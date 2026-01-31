@@ -22,6 +22,8 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 # =========================
 # Functions
 # =========================
+API_KEY = st.secrets["api_key"]
+
 def get_weather(city, api_key, units="metric"):
     params = {
         "q": city,
@@ -41,6 +43,9 @@ def get_weather(city, api_key, units="metric"):
         "lat": data["coord"]["lat"],
         "lon": data["coord"]["lon"]
     }
+
+# ---
+weather_data = get_weather(city, API_KEY)
 
 
 def get_location_time(timezone_offset):
