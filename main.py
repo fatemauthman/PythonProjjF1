@@ -56,7 +56,7 @@ city = st.text_input("Enter city name", key="city_input")
 
 if st.button("Get Weather", key="get_weather_btn") and city:
     try:
-        weather_data = get_weather(city)
+        weather_data = get_weather(city, API_KEY)
 
         st.subheader(f" Weather in {weather_data['city']}")
         st.write(f" **Temperature:** {weather_data['temperature']} °C")
