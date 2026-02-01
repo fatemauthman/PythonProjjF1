@@ -1,8 +1,10 @@
 # Weather Checker App – Streamlit
 
 ## About the App
-This project is a Python-based weather application developed using *Streamlit*.
-The app allows users to enter a city name and retrieve **real-time weather information** using a REST API.
+The Weather Checker App is a Python-based web application built using Streamlit.
+The application allows users to enter their name and a city name in order to retrieve real-time weather information from an external REST API.
+
+This project demonstrates end-to-end development of a data-driven application, including API integration, data processing, interactive UI design, and cloud deployment.
 
 The project demonstrates the full development flow:
 - Data retrieval via REST API
@@ -18,27 +20,33 @@ The application is publicly deployed and accessible here:
 https://pythonprojjf1-emodgcuywapkpwsyrj6nfu.streamlit.app/
 
 ---
+Who can use the App:
+
+The Weather Checker App is designed for a wide range of users who need quick and reliable weather information in a simple and intuitive way:
+General users - who want to quickly check the current weather in any city
+Travelers - planning trips and needing up-to-date weather conditions at their destination
+Students - learning Python, data science, or API integration, as a practical example of a real-world application
+Developers - who want a simple reference project for building and deploying Streamlit applications
+Educators - who can use the app as a demonstration of REST API usage and interactive data visualization
 
 ## Features
-- City-based weather search
-- Displays:
-  - Temperature
-  - Humidity
-  - Weather condition description
-- Displays **current local date and time**:
-  - User’s local time
-  - Local time of the selected city (timezone-based)
-- REST API integration (OpenWeatherMap)
-- User-friendly and interactive UI built with Streamlit
-
+- Personalized welcome message using user name input
+City-based weather search
+Real-time weather data display:
+Temperature (°C)
+Humidity (%)
+Weather condition description
+Local date and time display based on the selected city’s timezone
+Interactive map showing the geographical location of the selected city
+Clean and user-friendly interface built with Streamlit
 ---
 
 ## Technologies Used
-- **Python**
-- **Streamlit**
-- **Requests** – REST API calls
-- **Pandas** – data organization
-- **OpenWeatherMap API**
+- Python
+- Streamlit
+- Requests – REST API calls
+- Pandas – data organization
+- OpenWeatherMap API
 
 ---
 
