@@ -2,36 +2,38 @@ import streamlit as st
 import requests
 import pandas as pd
 from datetime import datetime, timezone, timedelta
-st.write(st.secrets)
 
 # =========================
 # App Configuration
 # =========================
-st.set_page_config(page_title="Weather App", page_icon="")
-st.title(" Weather Checker App")
-
-# --- Name section ---
-st.subheader("👋 Welcome")
-name = st.text_input("Enter your name", key="name_input")
-
-if name:
-    st.success(f"Hello {name}! 😊 Welcome to the Weather App")
-api_key = "631e6df9a39414ae72d5ad878b96c13e"
-BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
-
+st.set_page_config(page_title="Weather App", page_icon="🌦️")
+st.title("🌦️ Weather Checker App")
 
 # =========================
-# Functions
+# API Key (Safe handling)
 # =========================
 if "api_key" in st.secrets:
     API_KEY = st.secrets["api_key"]
 else:
-    API_KEY = None
-if not API_KEY:
     st.error("API key is missing. Please configure Streamlit Secrets.")
     st.stop()
 
+BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
+# =========================
+# Personalization
+# =========================
+st.subheader("👋 Welcome")
+name = st.text_input("Enter your name")
+
+if name:
+    st.success(f"Hello {name}! 😊 Welcome to the Weather App")
+
+st.divider()
+
+# =========================
+# Functions
+# =========================
 def get_weather(city, api_key, units="metric"):
     params = {
         "q": city,
@@ -53,44 +55,74 @@ def get_weather(city, api_key, units="metric"):
     }
 
 
-
 def get_location_time(timezone_offset):
     utc_time = datetime.now(timezone.utc)
     location_time = utc_time + timedelta(seconds=timezone_offset)
     return location_time.strftime("%A, %d %B %Y, %H:%M")
 
 
+def packing_recommendations(temp, condition):
+    items = []
+
+    if temp < 10:
+        items += ["Warm jacket", "Scarf", "Closed shoes"]
+    elif 10 <= temp < 20:
+        items += ["Light jacket", "Long pants"]
+    else:
+        items += ["T-shirts", "Sunglasses", "Sunscreen"]
+
+    condition = condition.lower()
+    if "rain" in condition:
+        items += ["Umbrella", "Raincoat"]
+    if "snow" in condition:
+        items += ["Winter boots"]
+
+    return list(set(items))
+
 # =========================
 # UI
 # =========================
-city = st.text_input("Enter city name", key="city_input")
+city = st.text_input("🌍 Enter city name")
 
-if st.button("Get Weather", key="get_weather_btn") and city:
+if st.button("Get Weather") and city:
     try:
         weather_data = get_weather(city, API_KEY)
 
-        st.subheader(f" Weather in {weather_data['city']}")
-        st.write(f" **Temperature:** {weather_data['temperature']} °C")
-        st.write(f" **Humidity:** {weather_data['humidity']}%")
-        st.write(f" **Condition:** {weather_data['condition']}")
+        st.subheader(f"📍 Weather in {weather_data['city']}")
+        st.write(f"🌡️ **Temperature:** {weather_data['temperature']} °C")
+        st.write(f"💧 **Humidity:** {weather_data['humidity']}%")
+        st.write(f"🌥️ **Condition:** {weather_data['condition']}")
+
+        # Weather alerts
+        if weather_data["temperature"] > 35:
+            st.warning("⚠️ Extreme heat – stay hydrated!")
+        elif weather_data["temperature"] < 5:
+            st.warning("⚠️ Very cold weather – dress warmly!")
 
         # Date & Time
+        st.subheader("🕒 Local Date & Time")
         location_time = get_location_time(weather_data["timezone"])
-        st.subheader(" Local Date & Time")
         st.write(location_time)
 
         # Map
-        st.subheader(" Location on Map")
+        st.subheader("🗺️ Location on Map")
         map_df = pd.DataFrame({
             "lat": [weather_data["lat"]],
             "lon": [weather_data["lon"]]
         })
         st.map(map_df)
 
+        # Packing recommendations
+        st.subheader("🎒 Recommended items to pack")
+        items = packing_recommendations(
+            weather_data["temperature"],
+            weather_data["condition"]
+        )
+        for item in items:
+            st.write(f"• {item}")
+
     except requests.exceptions.HTTPError:
-        st.error(" City not found. Please try again.")
+        st.error("❌ City not found. Please check the name and try again.")
 
     except Exception as e:
-        st.error(" Something went wrong.")
-
-
+        st.error("⚠️ Something went wrong.")
