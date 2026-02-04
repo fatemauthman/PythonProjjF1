@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 from datetime import datetime, timezone, timedelta
+st.write(st.secrets)
 
 # =========================
 # App Configuration
@@ -84,4 +85,5 @@ if st.button("Get Weather", key="get_weather_btn") and city:
 
     except Exception as e:
         st.error(" Something went wrong.")
+
 
