@@ -23,7 +23,14 @@ BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 # =========================
 # Functions
 # =========================
-API_KEY = st.secrets["api_key"]
+if "api_key" in st.secrets:
+    API_KEY = st.secrets["api_key"]
+else:
+    API_KEY = None
+if not API_KEY:
+    st.error("API key is missing. Please configure Streamlit Secrets.")
+    st.stop()
+
 
 def get_weather(city, api_key, units="metric"):
     params = {
