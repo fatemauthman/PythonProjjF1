@@ -8,15 +8,13 @@ from datetime import datetime, timezone, timedelta
 # =========================
 st.set_page_config(page_title="Weather App", page_icon="🌦️")
 st.title("🌦️ Weather Checker App")
+st.write("Secrets:", st.secrets)
+
 
 # =========================
 # API Key (Safe handling)
 # =========================
-if "api_key" in st.secrets:
-    API_KEY = st.secrets["api_key"]
-else:
-    st.error("API key is missing. Please configure Streamlit Secrets.")
-    st.stop()
+API_KEY = "631e6df9a39414ae72d5ad878b96c13e"
 
 BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
 
