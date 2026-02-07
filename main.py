@@ -88,18 +88,9 @@ if st.button("Get Weather") and city:
     try:
         weather_data = get_weather(city, API_KEY)
 
-        st.subheader("📊 Temperature Visualization")
-
-        temp_df = pd.DataFrame({
-            "Metric": ["Temperature"],
-            "Value": [weather_data["temperature"]]
-        })
-
-        st.bar_chart(temp_df.set_index("Metric"))
-
-        st.subheader(f" Weather in {weather_data['city']}")
-        st.write(f" **Temperature:** {weather_data['temperature']} °C")
-        st.write(f" **Humidity:** {weather_data['humidity']}%")
+        st.subheader(f"📍 Weather in {weather_data['city']}")
+        st.write(f"🌡️ **Temperature:** {weather_data['temperature']} °C")
+        st.write(f"💧 **Humidity:** {weather_data['humidity']}%")
         st.write(f"🌥️ **Condition:** {weather_data['condition']}")
 
         # Weather alerts
@@ -122,7 +113,7 @@ if st.button("Get Weather") and city:
         st.map(map_df)
 
         # Packing recommendations
-        st.subheader(" Recommended items to pack")
+        st.subheader("🎒 Recommended items to pack")
         items = packing_recommendations(
             weather_data["temperature"],
             weather_data["condition"]
@@ -131,7 +122,7 @@ if st.button("Get Weather") and city:
             st.write(f"• {item}")
 
     except requests.exceptions.HTTPError:
-        st.error(" City not found. Please check the name and try again.")
+        st.error("❌ City not found. Please check the name and try again.")
 
     except Exception as e:
-        st.error(" Something went wrong.")
+        st.error("⚠️ Something went wrong.")
